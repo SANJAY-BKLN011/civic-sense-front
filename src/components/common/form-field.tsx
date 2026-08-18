@@ -13,9 +13,9 @@ import { cn } from "@/lib/utils";
 interface FieldShellProps {
   id: string;
   label: string;
-  hint?: string;
-  error?: string;
-  className?: string;
+  hint?: string | undefined;
+  error?: string | undefined;
+  className?: string | undefined;
   children: ReactNode;
 }
 
@@ -60,10 +60,10 @@ interface SelectFieldProps {
   id: string;
   label: string;
   placeholder?: string;
-  hint?: string;
-  error?: string;
+  hint?: string | undefined;
+  error?: string | undefined;
   options: { value: string; label: string }[];
-  defaultValue?: string;
+  defaultValue?: string | undefined;
 }
 
 export function SelectField({
@@ -77,7 +77,7 @@ export function SelectField({
 }: SelectFieldProps) {
   return (
     <FieldShell id={id} label={label} hint={hint} error={error}>
-      <Select defaultValue={defaultValue}>
+      <Select {...(defaultValue ? { defaultValue } : {})}>
         <SelectTrigger id={id} className="w-full">
           <SelectValue placeholder={placeholder} />
         </SelectTrigger>
