@@ -160,17 +160,7 @@ At the end, make sure the project runs successfully and every route above can be
 
 This is F1: FRONTEND FOUNDATION ONLY.
 
-Do not implement later project features yet.
-
-This project was built with [Lovable](https://lovable.dev).
-
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/625e7286-b0b7-4fd1-828d-e6f177a5fc54).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
+Do not implement later project features yet
 
 ## Development
 
