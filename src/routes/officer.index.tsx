@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { PageHeader } from "@/components/common/page-header";
 import { PlaceholderPanel } from "@/components/common/placeholder-panel";
 
-export const Route = createFileRoute("/officer")({
+export const Route = createFileRoute("/officer/")({
   head: () => ({
     meta: [
       { title: "Officer Portal — CivicSense" },
