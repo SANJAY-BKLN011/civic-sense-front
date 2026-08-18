@@ -1,10 +1,10 @@
 import type { ReactNode } from "react";
-import { Link } from "@tanstack/react-router";
+import { Link, type LinkProps } from "@tanstack/react-router";
 import { Landmark } from "lucide-react";
 
 export interface NavItem {
   label: string;
-  to: string;
+  to: LinkProps["to"];
 }
 
 export function BrandMark({ subtitle }: { subtitle?: string }) {
