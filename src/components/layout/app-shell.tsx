@@ -4,7 +4,7 @@ import { Landmark } from "lucide-react";
 
 export interface NavItem {
   label: string;
-  to: LinkProps["to"];
+  to: NonNullable<LinkProps["to"]>;
 }
 
 export function BrandMark({ subtitle }: { subtitle?: string }) {
