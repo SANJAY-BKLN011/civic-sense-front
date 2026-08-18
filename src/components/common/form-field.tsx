@@ -39,8 +39,8 @@ export function FieldShell({ id, label, hint, error, className, children }: Fiel
 interface TextFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
   id: string;
   label: string;
-  hint?: string;
-  error?: string;
+  hint?: string | undefined;
+  error?: string | undefined;
 }
 
 export function TextField({ id, label, hint, error, className, ...props }: TextFieldProps) {
