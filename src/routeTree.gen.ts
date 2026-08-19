@@ -15,6 +15,7 @@ import { Route as OfficerRouteImport } from './routes/officer'
 import { Route as CitizenIndexRouteImport } from './routes/citizen.index'
 import { Route as CitizenComplaintsRouteImport } from './routes/citizen.complaints'
 import { Route as CitizenDashboardRouteImport } from './routes/citizen.dashboard'
+import { Route as CitizenForgotPasswordRouteImport } from './routes/citizen.forgot-password'
 import { Route as CitizenLoginRouteImport } from './routes/citizen.login'
 import { Route as CitizenRegisterRouteImport } from './routes/citizen.register'
 import { Route as CitizenReportRouteImport } from './routes/citizen.report'
@@ -53,6 +54,11 @@ const CitizenComplaintsRoute = CitizenComplaintsRouteImport.update({
 const CitizenDashboardRoute = CitizenDashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
+  getParentRoute: () => CitizenRoute,
+} as any)
+const CitizenForgotPasswordRoute = CitizenForgotPasswordRouteImport.update({
+  id: '/forgot-password',
+  path: '/forgot-password',
   getParentRoute: () => CitizenRoute,
 } as any)
 const CitizenLoginRoute = CitizenLoginRouteImport.update({
@@ -107,6 +113,7 @@ export interface FileRoutesByFullPath {
   '/officer': typeof OfficerRouteWithChildren
   '/citizen/complaints': typeof CitizenComplaintsRoute
   '/citizen/dashboard': typeof CitizenDashboardRoute
+  '/citizen/forgot-password': typeof CitizenForgotPasswordRoute
   '/citizen/login': typeof CitizenLoginRoute
   '/citizen/register': typeof CitizenRegisterRoute
   '/citizen/report': typeof CitizenReportRoute
@@ -122,6 +129,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/citizen/complaints': typeof CitizenComplaintsRoute
   '/citizen/dashboard': typeof CitizenDashboardRoute
+  '/citizen/forgot-password': typeof CitizenForgotPasswordRoute
   '/citizen/login': typeof CitizenLoginRoute
   '/citizen/register': typeof CitizenRegisterRoute
   '/citizen/report': typeof CitizenReportRoute
@@ -140,6 +148,7 @@ export interface FileRoutesById {
   '/officer': typeof OfficerRouteWithChildren
   '/citizen/complaints': typeof CitizenComplaintsRoute
   '/citizen/dashboard': typeof CitizenDashboardRoute
+  '/citizen/forgot-password': typeof CitizenForgotPasswordRoute
   '/citizen/login': typeof CitizenLoginRoute
   '/citizen/register': typeof CitizenRegisterRoute
   '/citizen/report': typeof CitizenReportRoute
@@ -159,6 +168,7 @@ export interface FileRouteTypes {
     | '/officer'
     | '/citizen/complaints'
     | '/citizen/dashboard'
+    | '/citizen/forgot-password'
     | '/citizen/login'
     | '/citizen/register'
     | '/citizen/report'
@@ -174,6 +184,7 @@ export interface FileRouteTypes {
     | '/'
     | '/citizen/complaints'
     | '/citizen/dashboard'
+    | '/citizen/forgot-password'
     | '/citizen/login'
     | '/citizen/register'
     | '/citizen/report'
@@ -191,6 +202,7 @@ export interface FileRouteTypes {
     | '/officer'
     | '/citizen/complaints'
     | '/citizen/dashboard'
+    | '/citizen/forgot-password'
     | '/citizen/login'
     | '/citizen/register'
     | '/citizen/report'
@@ -251,6 +263,13 @@ declare module '@tanstack/react-router' {
       path: '/dashboard'
       fullPath: '/citizen/dashboard'
       preLoaderRoute: typeof CitizenDashboardRouteImport
+      parentRoute: typeof CitizenRoute
+    }
+    '/citizen/forgot-password': {
+      id: '/citizen/forgot-password'
+      path: '/forgot-password'
+      fullPath: '/citizen/forgot-password'
+      preLoaderRoute: typeof CitizenForgotPasswordRouteImport
       parentRoute: typeof CitizenRoute
     }
     '/citizen/login': {
@@ -322,6 +341,7 @@ declare module '@tanstack/react-router' {
 interface CitizenRouteChildren {
   CitizenComplaintsRoute: typeof CitizenComplaintsRoute
   CitizenDashboardRoute: typeof CitizenDashboardRoute
+  CitizenForgotPasswordRoute: typeof CitizenForgotPasswordRoute
   CitizenLoginRoute: typeof CitizenLoginRoute
   CitizenRegisterRoute: typeof CitizenRegisterRoute
   CitizenReportRoute: typeof CitizenReportRoute
@@ -331,6 +351,7 @@ interface CitizenRouteChildren {
 const CitizenRouteChildren: CitizenRouteChildren = {
   CitizenComplaintsRoute: CitizenComplaintsRoute,
   CitizenDashboardRoute: CitizenDashboardRoute,
+  CitizenForgotPasswordRoute: CitizenForgotPasswordRoute,
   CitizenLoginRoute: CitizenLoginRoute,
   CitizenRegisterRoute: CitizenRegisterRoute,
   CitizenReportRoute: CitizenReportRoute,

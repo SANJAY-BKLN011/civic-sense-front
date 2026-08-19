@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { RequireCitizenAuth } from "@/components/auth/require-citizen-auth";
 import { PageHeader } from "@/components/common/page-header";
 import { StatusBadge } from "@/components/common/status-badge";
 import { EmptyState, ErrorMessage, LoadingState } from "@/components/common/states";
@@ -20,7 +21,7 @@ export const Route = createFileRoute("/citizen/complaints")({
       },
     ],
   }),
-  component: CitizenComplaints,
+  component: ProtectedCitizenComplaints,
 });
 
 const sampleComplaints = [
@@ -28,6 +29,14 @@ const sampleComplaints = [
   { id: "CS-1038", title: "Street light out on 4th Cross", status: "progress" as const, label: "In progress" },
   { id: "CS-1024", title: "Overflowing waste bin", status: "resolved" as const, label: "Resolved" },
 ];
+
+function ProtectedCitizenComplaints() {
+  return (
+    <RequireCitizenAuth>
+      <CitizenComplaints />
+    </RequireCitizenAuth>
+  );
+}
 
 function CitizenComplaints() {
   return (
