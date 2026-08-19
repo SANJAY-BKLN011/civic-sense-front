@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { RequireCitizenAuth } from "@/components/auth/require-citizen-auth";
 import { PageHeader } from "@/components/common/page-header";
 import { PlaceholderPanel } from "@/components/common/placeholder-panel";
 
@@ -11,8 +12,16 @@ export const Route = createFileRoute("/citizen/dashboard")({
       { property: "og:description", content: "Placeholder dashboard summarising a resident's civic complaints." },
     ],
   }),
-  component: CitizenDashboard,
+  component: ProtectedCitizenDashboard,
 });
+
+function ProtectedCitizenDashboard() {
+  return (
+    <RequireCitizenAuth>
+      <CitizenDashboard />
+    </RequireCitizenAuth>
+  );
+}
 
 function CitizenDashboard() {
   return (

@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { RequireCitizenAuth } from "@/components/auth/require-citizen-auth";
 import { PageHeader } from "@/components/common/page-header";
 import { PlaceholderPanel } from "@/components/common/placeholder-panel";
 import { SelectField, TextField } from "@/components/common/form-field";
@@ -29,7 +30,7 @@ export const Route = createFileRoute("/citizen/report")({
       },
     ],
   }),
-  component: CitizenReport,
+  component: ProtectedCitizenReport,
 });
 
 const categories = [
@@ -39,6 +40,14 @@ const categories = [
   { value: "lighting", label: "Street lighting" },
   { value: "other", label: "Other" },
 ];
+
+function ProtectedCitizenReport() {
+  return (
+    <RequireCitizenAuth>
+      <CitizenReport />
+    </RequireCitizenAuth>
+  );
+}
 
 function CitizenReport() {
   return (
