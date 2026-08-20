@@ -61,11 +61,11 @@ interface SubmissionResult {
 }
 
 interface Errors {
-  photo?: string;
-  title?: string;
-  department?: string;
-  description?: string;
-  location?: string;
+  photo?: string | undefined;
+  title?: string | undefined;
+  department?: string | undefined;
+  description?: string | undefined;
+  location?: string | undefined;
 }
 
 function CitizenReport() {
