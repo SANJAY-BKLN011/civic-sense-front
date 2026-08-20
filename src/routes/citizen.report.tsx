@@ -175,7 +175,10 @@ function CitizenReport() {
                 placeholder="Garbage overflowing near the public park"
                 maxLength={TITLE_MAX}
                 value={title}
-                onChange={(event) => setTitle(event.target.value)}
+                onChange={(event) => {
+                  setTitle(event.target.value);
+                  setErrors((prev) => ({ ...prev, title: undefined }));
+                }}
                 hint={`${title.length}/${TITLE_MAX} characters`}
                 {...(errors.title ? { error: errors.title } : {})}
               />
@@ -185,7 +188,13 @@ function CitizenReport() {
                 label="Select Responsible Department"
                 {...(errors.department ? { error: errors.department } : {})}
               >
-                <Select value={department} onValueChange={setDepartment}>
+                <Select
+                  value={department}
+                  onValueChange={(value) => {
+                    setDepartment(value);
+                    setErrors((prev) => ({ ...prev, department: undefined }));
+                  }}
+                >
                   <SelectTrigger id="issue-department" className="w-full" aria-invalid={Boolean(errors.department)}>
                     <SelectValue placeholder="Choose a department" />
                   </SelectTrigger>
@@ -218,7 +227,10 @@ function CitizenReport() {
                   aria-invalid={Boolean(errors.description)}
                   placeholder="Explain what happened and provide useful details about the issue..."
                   value={description}
-                  onChange={(event) => setDescription(event.target.value)}
+                  onChange={(event) => {
+                    setDescription(event.target.value);
+                    setErrors((prev) => ({ ...prev, description: undefined }));
+                  }}
                 />
               </FieldShell>
             </CardContent>
@@ -233,8 +245,14 @@ function CitizenReport() {
                 coords={coords}
                 manualLocation={manualLocation}
                 {...(errors.location ? { error: errors.location } : {})}
-                onCoords={setCoords}
-                onManualLocation={setManualLocation}
+                onCoords={(value) => {
+                  setCoords(value);
+                  setErrors((prev) => ({ ...prev, location: undefined }));
+                }}
+                onManualLocation={(value) => {
+                  setManualLocation(value);
+                  setErrors((prev) => ({ ...prev, location: undefined }));
+                }}
               />
             </CardContent>
           </Card>
