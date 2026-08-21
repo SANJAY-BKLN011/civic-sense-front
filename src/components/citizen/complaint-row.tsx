@@ -1,10 +1,23 @@
 import { Link } from "@tanstack/react-router";
 import { ChevronRight, ImageIcon } from "lucide-react";
 import { StatusBadge } from "@/components/common/status-badge";
-import { formatComplaintDate, statusMeta, type MockComplaint } from "@/lib/mock-complaints";
+import {
+  formatComplaintDate,
+  priorityMeta,
+  statusMeta,
+  type MockComplaint,
+} from "@/lib/mock-complaints";
+import { cn } from "@/lib/utils";
 
-export function ComplaintRow({ complaint }: { complaint: MockComplaint }) {
+export function ComplaintRow({
+  complaint,
+  showPriority = false,
+}: {
+  complaint: MockComplaint;
+  showPriority?: boolean;
+}) {
   const meta = statusMeta[complaint.status];
+  const priority = priorityMeta[complaint.priority];
 
   return (
     <Link
@@ -26,12 +39,32 @@ export function ComplaintRow({ complaint }: { complaint: MockComplaint }) {
         <span className="mt-1 block truncate text-xs text-muted-foreground">
           {complaint.id} · {complaint.department} · {formatComplaintDate(complaint.date)}
         </span>
-        <span className="mt-2 flex sm:hidden">
+        <span className="mt-2 flex flex-wrap items-center gap-2 sm:hidden">
           <StatusBadge status={meta.badge}>{meta.label}</StatusBadge>
+          {showPriority ? (
+            <span
+              className={cn(
+                "inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-medium",
+                priority.className,
+              )}
+            >
+              {priority.label}
+            </span>
+          ) : null}
         </span>
       </span>
 
       <span className="flex shrink-0 items-center gap-3">
+        {showPriority ? (
+          <span
+            className={cn(
+              "hidden rounded-full border px-2 py-0.5 text-xs font-medium sm:inline-flex",
+              priority.className,
+            )}
+          >
+            {priority.label}
+          </span>
+        ) : null}
         <span className="hidden sm:block">
           <StatusBadge status={meta.badge}>{meta.label}</StatusBadge>
         </span>
